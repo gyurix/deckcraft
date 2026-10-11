@@ -7,7 +7,8 @@ DRY=0; PUSH=1
 for a in "$@"; do case "$a" in --dry-run) DRY=1;; --no-push) PUSH=0;; esac; done
 git fetch upstream main
 git fetch origin
-git checkout -B dev upstream/main
+rm -rf vendor/winit/target
+ git checkout -B dev upstream/main
 for b in $PATCHES; do
   if git rev-parse --verify "origin/$b" >/dev/null 2>&1; then
     echo "== merging origin/$b =="
