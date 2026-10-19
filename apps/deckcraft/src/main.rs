@@ -23,6 +23,7 @@ mod graphics;
 mod logging;
 #[cfg(not(target_arch = "wasm32"))]
 mod pasteboard;
+#[cfg(all(unix, not(target_os = "macos")))]
 mod x11_scale;
 
 use deckcraft_engine::Session;
@@ -201,6 +202,7 @@ fn main() -> eframe::Result {
     }
     // X11: prefer the desktop's DPI (Xft.dpi, then the server screen) over the
     // panel's physical density before winit reads it; explicit user override wins.
+    #[cfg(all(unix, not(target_os = "macos")))]
     x11_scale::apply();
     let mut options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
