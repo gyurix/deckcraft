@@ -166,7 +166,7 @@ pub fn window_frame(app: &SlideApp, ctx: &egui::Context) {
     };
     if let Some((dir, icon)) = hit {
         ctx.set_cursor_icon(icon);
-        if ctx.input(|i| i.pointer.primary_pressed()) {
+        if !controls.contains(pos) && ctx.input(|i| i.pointer.primary_pressed()) {
             ctx.send_viewport_cmd(egui::ViewportCommand::BeginResize(dir));
         }
     }
