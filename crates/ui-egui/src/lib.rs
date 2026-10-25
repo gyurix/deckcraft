@@ -2834,13 +2834,13 @@ mod tests {
             harness.state_mut().run("app.preferences", json!({})).unwrap();
             harness.run_steps(2);
             harness
-                .query_all_by_role_and_label(egui::accesskit::Role::ComboBox, "Use system setting")
+                .query_all_by_role_and_label(egui::accesskit::Role::ComboBox, "Display theme")
                 .next()
                 .unwrap_or_else(|| panic!("no Display theme selector"))
                 .click_accesskit();
             harness.run_steps(1);
             harness
-                .query_all_by_role_and_label(egui::accesskit::Role::RadioButton, "Dark")
+                .query_all_by_role_and_label(egui::accesskit::Role::Button, "Dark")
                 .next()
                 .unwrap_or_else(|| panic!("no Dark theme option"))
                 .click_accesskit();

@@ -2267,7 +2267,7 @@ fn body(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
                     Some(theme::Brightness::Dark) => "Dark",
                     Some(theme::Brightness::Light) => "Light",
                 };
-                egui::ComboBox::from_id_salt("display_theme").selected_text(current).width(180.0).show_ui(ui, |ui| {
+                egui::ComboBox::from_label("Display theme").selected_text(current).width(180.0).show_ui(ui, |ui| {
                     for (value, label) in [("system", "Use system setting"), ("light", "Light"), ("dark", "Dark")] {
                         let chosen = app.ui.brightness
                             == match value {
