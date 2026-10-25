@@ -96,7 +96,10 @@ fn options_cancel_puts_the_appearance_and_scale_back() {
     let (brightness_before, scale_before) = (h.state().ui.brightness, h.state().ui.ui_scale);
     open_options(&mut h);
 
-    h.query_all_by_role_and_label(egui::accesskit::Role::ComboBox, "Use system setting").next().expect("the Display theme selector is there").click_accesskit();
+    h.query_all_by_role_and_label(egui::accesskit::Role::ComboBox, "Use system setting")
+        .next()
+        .expect("the Display theme selector is there")
+        .click_accesskit();
     h.run_steps(1);
     h.query_all_by_role_and_label(egui::accesskit::Role::RadioButton, "Dark").next().expect("the Dark theme option is there").click_accesskit();
     h.run_steps(2);

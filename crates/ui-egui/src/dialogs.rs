@@ -171,7 +171,11 @@ fn restore_preferences(app: &mut SlideApp, d: &Dialog) {
     if let Some(value) = before.get("brightness") {
         let brightness: Option<theme::Brightness> = serde_json::from_value(value.clone()).ok();
         if brightness != app.ui.brightness {
-            let value = match brightness { None => "system", Some(theme::Brightness::Light) => "light", Some(theme::Brightness::Dark) => "dark" };
+            let value = match brightness {
+                None => "system",
+                Some(theme::Brightness::Light) => "light",
+                Some(theme::Brightness::Dark) => "dark",
+            };
             let _ = app.run("view.theme", json!({ "value": value }));
         }
     }
